@@ -1,34 +1,74 @@
 <h2>{{title}}</h2>
 
+
 <button type="button" (click)="setVisible()">
   {{ visible ? 'Ocultar' : 'Mostrar' }}
 </button>
 <br />
 <br />
 
-<div *ngIf="visible; else showMessage">
+<div class="container">
 
-  <table class="table" border="5" *ngIf="(users != undefined && users.length > 0) else emptyData" width="15%" style="text-align: center;">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr scope="row" *ngFor="let user of users index as i">
-        <td>{{i + 1}}</td>
-        <td>{{user}}</td>
-      </tr>
-    </tbody>
-  </table>
-  <p>Existen {{ users.length + 1}} usuarios</p>
-  <ng-template #emptyData>
+  <div class="oldSyntax">
+
+    <div *ngIf="visible; else showMessage">
+
+      <table class="table" border="5" *ngIf="(users != undefined && users.length > 0) else emptyData" width="15%"
+        style="text-align: center;">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr scope="row" *ngFor="let user of users index as i">
+            <td>{{i + 1}}</td>
+            <td>{{user}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p *ngIf="(users != undefined && users.length > 0)" >Existen {{ users.length + 1}} usuarios</p>
+      <ng-template #emptyData>
+        <h3>No hay datos :(</h3>
+      </ng-template>
+
+    </div>
+
+    <ng-template #showMessage>
+      <h1>Lo sentimos pagina no disponible :(</h1>
+    </ng-template>
+
+  </div>
+
+  <div class="newSyntax">
+
+    @if (visible) {
+
+    @if (users != undefined && users.length > 0) {
+    <table class="table" border="5" width="15%" style="text-align: center;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr scope="row" *ngFor="let user of users index as i">
+          <td>{{i + 1}}</td>
+          <td>{{user}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Existen {{ users.length + 1}} usuarios</p>
+    }@else {
     <h3>No hay datos :(</h3>
-  </ng-template>
+    }
+
+    }@else {
+    <h1>Lo sentimos pagina no disponible :(</h1>
+    }
+
+  </div>
 
 </div>
-
-<ng-template #showMessage>
-  <h1>Lo sentimos pagina no disponible :(</h1>
-</ng-template>

@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+}
+
+.oldSyntax, .newSyntax {
+  width: 50%;
+}
+
+.table {
+  width: 80%; /* Asegúrate de que las tablas ocupen el ancho completo del div */
+  text-align: center;
+}
