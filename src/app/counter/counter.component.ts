@@ -15,8 +15,8 @@ export class CounterComponent implements OnInit {
       typeof window !== 'undefined' &&
       typeof sessionStorage !== 'undefined'
     ) {
-      const storedCounter = sessionStorage.getItem('counter');
-      this.counter = storedCounter ? parseInt(storedCounter) : 0;
+      const localCounter = localStorage.getItem('counter');
+      this.counter = localCounter ? parseInt(localCounter) : 0;
     }
   }
 
@@ -24,9 +24,9 @@ export class CounterComponent implements OnInit {
     this.counter++;
     if (
       typeof window !== 'undefined' &&
-      typeof sessionStorage !== 'undefined'
+      typeof localStorage !== 'undefined'
     ) {
-      sessionStorage.setItem('counter', this.counter.toString());
+      localStorage.setItem('counter', this.counter.toString());
     }
   }
 }
