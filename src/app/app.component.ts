@@ -11,7 +11,7 @@ import { CounterComponent } from './counter/counter.component';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'Hola desde el componente';
+  title = 'Hola desde el componente padre';
   users = ['user1','user2','user3','user4','user5']
   // users = [];
   // users? : string[]; //  Se le dice al compilador que ya se que no esta inicializada
