@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -8,8 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrl: './counter.component.css',
 })
 export class CounterComponent implements OnInit {
+  @Input() inputTitle: string = '';
 
-  @Input() inputTitle : string = '';
+  // @Output() counterEmiter : EventEmitter<number> = new EventEmitter();
+  @Output() counterEmiter = new EventEmitter();
 
   counter: number = 0;
 
@@ -18,8 +20,8 @@ export class CounterComponent implements OnInit {
       typeof window !== 'undefined' &&
       typeof sessionStorage !== 'undefined'
     ) {
-      const localCounter = localStorage.getItem('counter');
-      this.counter = localCounter ? parseInt(localCounter) : 0;
+      const sessionCounter = sessionStorage.getItem('counter');
+      this.counter = sessionCounter ? parseInt(sessionCounter) : 0;
     }
   }
 
@@ -27,9 +29,10 @@ export class CounterComponent implements OnInit {
     this.counter++;
     if (
       typeof window !== 'undefined' &&
-      typeof localStorage !== 'undefined'
+      typeof sessionStorage !== 'undefined'
     ) {
-      localStorage.setItem('counter', this.counter.toString());
+      sessionStorage.setItem('counter', this.counter.toString());
+      this.counterEmiter.emit(this.counter);
     }
   }
 }

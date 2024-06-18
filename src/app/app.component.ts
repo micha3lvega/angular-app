@@ -12,15 +12,19 @@ import { CounterComponent } from './counter/counter.component';
 })
 export class AppComponent {
   title = 'Hola desde el componente padre';
-  users = ['user1','user2','user3','user4','user5']
+  users = ['user1', 'user2', 'user3', 'user4', 'user5'];
   // users = [];
   // users? : string[]; //  Se le dice al compilador que ya se que no esta inicializada
-  visible : boolean = true;
+  visible: boolean = true;
   // users!: string[]; // Se le dice al compilador que esta variable es opcional
 
+  counter: number = 0;
 
-  setVisible() : void {
+  setVisible(): void {
     this.visible = !this.visible;
   }
 
+  setCounterListener(counter: number): void {
+    this.counter = counter;
+  }
 }

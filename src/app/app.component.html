@@ -73,4 +73,6 @@
 
 </div>
 
-<app-counter [inputTitle]="title"></app-counter>
+<p>Clicks: {{counter  }}</p>
+
+<app-counter [inputTitle]="title" (counterEmiter)="setCounterListener($event)"></app-counter>
